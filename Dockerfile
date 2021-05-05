@@ -1,5 +1,5 @@
 # Dockerfile for https://github.com/lousab/webhook
-# ls05052921 - the webhook is compliant with ansible scripts
+# LS05052921 - the webhook is compliant with ansible scripts
 FROM        golang:alpine3.11 AS build
 WORKDIR     /go/src/github.com/luigisainini/webhook
 ENV         WEBHOOK_VERSION 2.8.0
