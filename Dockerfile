@@ -1,4 +1,5 @@
-# Dockerfile for https://github.com/adnanh/webhook
+# Dockerfile for https://github.com/lousab/webhook
+# ls05052921 - the webhook is compliant with ansible scripts
 FROM        golang:alpine3.11 AS build
 WORKDIR     /go/src/github.com/luigisainini/webhook
 ENV         WEBHOOK_VERSION 2.8.0
@@ -17,3 +18,6 @@ WORKDIR     /etc/webhook
 VOLUME      ["/etc/webhook"]
 EXPOSE      9000
 ENTRYPOINT  ["/usr/local/bin/webhook"]
+RUN         apk update && apk add --no-cache musl-dev libffi-dev openssl-dev make gcc python py2-pip python-dev \
+            pip install cffi \
+            pip install ansible
