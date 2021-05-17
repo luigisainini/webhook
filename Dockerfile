@@ -21,10 +21,12 @@ ENTRYPOINT  ["/usr/local/bin/webhook"]
 RUN         apk update && apk add --no-cache musl-dev libffi-dev openssl-dev make gcc python py2-pip python-dev 
 RUN         pip install cffi
 RUN         pip install ansible
-# add awscli 
+# add awscli && git repo Mago Cloud
 RUN apk update \
     && apk --no-cache add curl \
+    && apk add --no-cache git \
     && apk --no-cache add unzip \
     && curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
     && unzip awscliv2.zip \
-    && ./aws/install
+    && ./aws/install \
+    && git clone https://4d0fc3e0d3c40c1503a0e7072aae87bad824ef4d@github.com/Microarea/magocloud-deployments.git
