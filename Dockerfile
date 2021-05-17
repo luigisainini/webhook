@@ -18,6 +18,11 @@ WORKDIR     /etc/webhook
 VOLUME      ["/etc/webhook"]
 EXPOSE      9000
 ENTRYPOINT  ["/usr/local/bin/webhook"]
-RUN         apk update && apk add --no-cache musl-dev libffi-dev openssl-dev make gcc python py2-pip python-dev
+RUN         apk update && apk add --no-cache musl-dev libffi-dev openssl-dev make gcc python py2-pip python-dev curl
 RUN         pip install cffi
 RUN         pip install ansible
+# add awscli 
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+RUN unzip awscliv2.zip
+RUN ./aws/install -i /usr/local/aws -b /usr/local/bin/aws
+RUN aws --version && docker -v
